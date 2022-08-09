@@ -73,7 +73,14 @@ function M.pounce(opts)
   local cursor_pos = vim.api.nvim_win_get_cursor(active_win)
   local windows = get_windows(opts)
   local ns = vim.api.nvim_create_namespace ""
-  local input = opts and opts.do_repeat and last_input or ""
+  local input = ""
+  if opts then
+    if opts.do_repeat then
+      input = last_input
+    elseif opts.do_cword then
+      input = vim.fn.expand "<cword>"
+    end
+  end
   local hl_prio = 65533
 
   while true do
@@ -215,6 +222,7 @@ function M.pounce(opts)
         vim.cmd "normal! m'"
         vim.api.nvim_win_set_cursor(accepted.window, accepted.position)
         vim.api.nvim_set_current_win(accepted.window)
+        last_input = opts.do_cword and input
         break
       elseif type(nr) == "number" and (nr < 32 or nr == 127) then
         -- ignore

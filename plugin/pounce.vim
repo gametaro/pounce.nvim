@@ -11,3 +11,4 @@ highlight default PounceAcceptBest cterm=bold ctermfg=black ctermbg=cyan gui=bol
 
 command! Pounce lua require'pounce'.pounce{}
 command! PounceRepeat lua require'pounce'.pounce{do_repeat=true}
+command! PounceCword lua require'pounce'.pounce{do_cword=true}

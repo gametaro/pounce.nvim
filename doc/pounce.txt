@@ -14,6 +14,9 @@ Commands~
 `:PounceRepeat`                                                 *:PounceRepeat*
     Start a new Pounce motion with the input from the previous one.
 
+`:PounceCword`                                                   *:PounceCword*
+    Start a new Pounce motion with the input from the |<cword>|.
+
 Highlights~
 
     * `PounceMatch`: Characters that match the fuzzy search pattern.
